@@ -26,6 +26,11 @@
 				float3 eyeSpaceCenter : TEXCOORD1;
 			};
 			
+			struct psout {
+				float4 color : COLOR;
+				float depth : DEPTH;
+			};
+			
 			v2f vert(appdata_base i) {
 				float3 eyeSpaceCenter = mul(UNITY_MATRIX_MV, i.vertex).xyz;
 				float2 eyeSpaceOffset = (i.texcoord.xy * 2.0 - 1.0) * _Radius;
@@ -38,7 +43,7 @@
 				return o;
 			}
 			
-			fixed4 frag(v2f i) : COLOR {
+			psout frag(v2f i) {
 				float3 eyeSpaceNormal;
 				eyeSpaceNormal.xy = i.texcoord * 2.0 - 1.0;
 				float r2 = dot(eyeSpaceNormal.xy, eyeSpaceNormal.xy);
@@ -47,12 +52,16 @@
 				
 				float4 eyeSpacePos = float4(i.eyeSpaceCenter + eyeSpaceNormal * _Radius, 1.0);
 				float4 clipSpacePos = mul(UNITY_MATRIX_P, eyeSpacePos);
+				float depth = clipSpacePos.z / clipSpacePos.w;
 				
 				float3 eyeSpaceLightDir = normalize(_LightDir);
 				float diffuse = max(0.0, dot(eyeSpaceNormal, eyeSpaceLightDir));
 				
 				//return float4(eyeSpaceNormal, 1.0);
-				return diffuse;
+				psout o;
+				o.color = diffuse;
+				o.depth = depth;
+				return o;
 			}
 			ENDCG
 		}
