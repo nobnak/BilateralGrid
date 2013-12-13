@@ -1,14 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SphereRenderer.cs">
+    <Files>
+      <File FileName="Assets/Materials/Shaders/NormalFromDepth.shader" Line="26" Column="4" />
+      <File FileName="Assets/Materials/Shaders/SpriteSphereDepth.shader" Line="63" Column="16" />
+      <File FileName="Assets/SphereRenderer.cs" Line="20" Column="17" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="SpriteSphere.cs" selected="True" />
-          </Node>
-          <Node name="Assembly-CSharp-Editor" expanded="True">
-            <Node name="Editor" expanded="True" />
+            <Node name="Materials" expanded="True">
+              <Node name="Shaders" expanded="True" />
+            </Node>
+            <Node name="SphereRenderer.cs" selected="True" />
           </Node>
         </State>
       </Pad>

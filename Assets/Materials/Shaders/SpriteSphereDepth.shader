@@ -54,12 +54,14 @@
 				float4 clipSpacePos = mul(UNITY_MATRIX_P, eyeSpacePos);
 				float depth = clipSpacePos.z / clipSpacePos.w;
 				
+				psout o;
+#ifdef DEBUG_DIFFUSE
 				float3 eyeSpaceLightDir = normalize(_LightDir);
 				float diffuse = max(0.0, dot(eyeSpaceNormal, eyeSpaceLightDir));
-				
-				//return float4(eyeSpaceNormal, 1.0);
-				psout o;
 				o.color = diffuse;
+#else
+				o.color = -eyeSpacePos.z;
+#endif
 				o.depth = depth;
 				return o;
 			}
