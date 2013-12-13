@@ -1,4 +1,4 @@
-﻿Shader "Custom/SpriteSphere" {
+﻿Shader "Custom/Depth" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_Radius ("Radius", Float) = 1

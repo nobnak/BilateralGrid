@@ -1,4 +1,4 @@
-﻿Shader "Custom/NormalFromDepth" {
+﻿Shader "Custom/Normal" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_MaxDepth ("Max depth", Float) = 1
@@ -58,7 +58,7 @@
 				
 				//return float4(i.texcoord, 0.0, 1.0);
 				//return float4(n, 1.0);
-				return float4(i.texcoord, 0.0, 1.0);
+				return float4(n, 1.0);
 			}
 			ENDCG
 		}
