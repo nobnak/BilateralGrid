@@ -15,7 +15,7 @@ public class SpriteMeshGen {
 		mesh.triangles = triangles;
 		mesh.uv = uv;
 		mesh.normals = normals;
-		mesh.RecalculateBounds();
+		mesh.bounds = new Bounds(Vector3.zero, new Vector3(2f, 2f, 0f));
 
 		AssetDatabase.CreateAsset(mesh, "Assets/Generated/Sprite.asset");
 	}

@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Editor\SpriteMeshGen.cs" />
      <None Include="Assets\Materials\Shaders\Normal.shader" />
+     <None Include="Assets\Materials\Shaders\NormalView.shader" />
      <None Include="Assets\Materials\Shaders\Depth.shader" />
  <Reference Include="\Applications\Unity4.3\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
  <HintPath>\Applications\Unity4.3\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>

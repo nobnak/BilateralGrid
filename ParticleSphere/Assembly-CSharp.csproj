@@ -46,9 +46,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\SphereRenderer.cs" />
+     <Compile Include="Assets\Scripts\MainCameraRenderer.cs" />
      <Compile Include="Assets\Scripts\SpriteSphere.cs" />
+     <Compile Include="Assets\Scripts\SpriteSphereRenderer.cs" />
      <None Include="Assets\Materials\Shaders\Normal.shader" />
+     <None Include="Assets\Materials\Shaders\NormalView.shader" />
      <None Include="Assets\Materials\Shaders\Depth.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

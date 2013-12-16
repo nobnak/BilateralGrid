@@ -56,8 +56,6 @@
 				
 				float3 n = normalize(cross(dx, dy));
 				
-				//return float4(i.texcoord, 0.0, 1.0);
-				//return float4(n, 1.0);
 				return float4(n, 1.0);
 			}
 			ENDCG
