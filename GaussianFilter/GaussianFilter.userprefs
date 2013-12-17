@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../Downloads/libbilagrid-src-win32_g80-0.1/shaders/Bilateral.cg">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GausianFilter.cs">
     <Files>
-      <File FileName="../../../../Downloads/libbilagrid-src-win32_g80-0.1/shaders/Bilateral.cg" Line="20" Column="38" />
+      <File FileName="Assets/Materials/GaussianX.shader" Line="16" Column="10" />
+      <File FileName="Assets/Scripts/GausianFilter.cs" Line="8" Column="5" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
