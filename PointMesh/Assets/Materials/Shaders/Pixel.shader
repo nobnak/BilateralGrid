@@ -22,7 +22,7 @@
 
 			vsout vert(appdata_full i) {
 				vsout o;
-				o.vertex = mul(UNITY_MATRIX_MVP, i.vertex);
+				o.vertex = i.vertex; //mul(UNITY_MATRIX_MVP, i.vertex);
 				o.texcoord = i.texcoord.xy;
 				o.color = i.color;
 				return o;

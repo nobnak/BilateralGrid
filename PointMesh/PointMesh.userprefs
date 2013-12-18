@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../Unity/body_custom_transparent/Assets/Scripts/Core/TestControllerInEditorMode.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../Downloads/Thinning.cs">
     <Files>
-      <File FileName="../../../Unity/body_custom_transparent/Assets/Materials/00Source/Mobile-NormalSH-Fade.shader" Line="4" Column="3" />
-      <File FileName="../../../Unity/body_custom_transparent/Assets/Scripts/Core/TestControllerInEditorMode.cs" Line="1" Column="1" />
+      <File FileName="../../../../Downloads/libbilagrid-src-win32_g80-0.1/shaders/Bilateral.cg" Line="28" Column="22" />
+      <File FileName="../../../../Downloads/libbilagrid-src-win32_g80-0.1/shaders/GridUtils.cgh" Line="39" Column="67" />
+      <File FileName="../../../../Downloads/Thinning.cs" Line="71" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
