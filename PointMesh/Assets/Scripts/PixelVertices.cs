@@ -16,14 +16,15 @@ public class PixelVertices : MonoBehaviour {
 		var uvs = new Vector2[width * height];
 		var colors = src.GetPixels();
 
-		var texelSize = new Vector3(1f / width, 1f / height, 0f);
+		var texelSize = new Vector2(1f / width, 1f / height);
+		var texelOffset = 0.5f * texelSize;
 
 		for (var y = 0; y < height; y++) {
 			for (var x = 0; x < width; x++) {
 				var index = x + y * width;
-				vertices[index] = new Vector3((2 * x - width) * texelSize.x, (2 * y - height) * texelSize.y, 0f);
+				vertices[index] = new Vector3(x * texelSize.x, y * texelSize.y, 0f);
 				indices[index] = index;
-				uvs[index] = new Vector2(x * texelSize.x, y * texelSize.y);
+				uvs[index] = new Vector2(x * texelSize.x, y * texelSize.y) + texelOffset;
 			}
 		}
 

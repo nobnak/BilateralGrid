@@ -4,10 +4,13 @@
 	}
 	SubShader {
 		Tags { "RenderType"="Transparent" "Queue"="Transparent" "IgnoreProjector"="True" }
+		Blend One One
 		LOD 200
 		
 		Pass {
 			CGPROGRAM
+			#pragma glsl
+			#pragma target 3.0
 			#pragma vertex vert
 			#pragma fragment frag
 			#include "UnityCG.cginc"
@@ -22,8 +25,8 @@
 
 			vsout vert(appdata_full i) {
 				vsout o;
-				o.vertex = i.vertex; //mul(UNITY_MATRIX_MVP, i.vertex);
-				o.color = tex2D(_MainTex, i.vertex.xy + 0.5 * _MainTex_TexelSize);
+				o.vertex = mul(UNITY_MATRIX_MVP, i.vertex);
+				o.color = tex2Dlod(_MainTex, i.texcoord);
 				return o;
 			}
 			
