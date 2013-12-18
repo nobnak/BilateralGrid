@@ -13,18 +13,17 @@
 			#include "UnityCG.cginc"
 	
 			sampler2D _MainTex;
+			float2 _MainTex_TexelSize;
 
 			struct vsout {
 				float4 vertex : POSITION;
-				float2 texcoord : TEXCOORD0;
-				float4 color : TEXCOORD1;
+				float4 color : TEXCOORD0;
 			};
 
 			vsout vert(appdata_full i) {
 				vsout o;
 				o.vertex = i.vertex; //mul(UNITY_MATRIX_MVP, i.vertex);
-				o.texcoord = i.texcoord.xy;
-				o.color = i.color;
+				o.color = tex2D(_MainTex, i.vertex.xy + 0.5 * _MainTex_TexelSize);
 				return o;
 			}
 			
