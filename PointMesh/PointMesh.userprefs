@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../Unity/body_custom_transparent/Assets/Scripts/Core/TestControllerInEditorMode.cs">
+    <Files>
+      <File FileName="../../../Unity/body_custom_transparent/Assets/Materials/00Source/Mobile-NormalSH-Fade.shader" Line="4" Column="3" />
+      <File FileName="../../../Unity/body_custom_transparent/Assets/Scripts/Core/TestControllerInEditorMode.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
