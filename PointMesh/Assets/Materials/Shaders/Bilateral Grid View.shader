@@ -3,6 +3,7 @@
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_Brightness ("Brightness", Float) = 0
 		_Contrast ("Contrast", Float) = 1
+		_Normalize ("Normalize", Range(0.0, 1.0)) = 1
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -17,6 +18,7 @@
 			sampler2D _MainTex;
 			float _Brightness;
 			float _Contrast;
+			float _Normalize;
 
 			struct appdata_custom {
 				float4 vertex : POSITION;
@@ -37,7 +39,8 @@
 			
 			fixed4 frag(vsout i) : COLOR {
 				float4 c = tex2D(_MainTex, i.texcoord);
-				c /= (c.a <= 0.0 ? 1.0 : c.a);
+				float4 nc = c / (c.a <= 0.0 ? 1.0 : c.a);
+				c = saturate(1.0 - _Normalize) * c + saturate(_Normalize) * nc;
 				
 				return c * _Contrast + _Brightness;
 			}

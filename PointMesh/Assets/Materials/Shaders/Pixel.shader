@@ -50,7 +50,7 @@
 				return o;
 			}
 			
-			fixed4 frag(vsout i) : COLOR {
+			float4 frag(vsout i) : COLOR {
 				return i.color;
 			}
 			ENDCG
