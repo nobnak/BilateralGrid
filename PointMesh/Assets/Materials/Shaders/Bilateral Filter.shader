@@ -1,0 +1,45 @@
+﻿Shader "Custom/Bilateral Filter" {
+	Properties {
+		_MainTex ("Base (RGB)", 2D) = "white" {}
+		_BilateralGridTex ("Bilateral grid", 2D) = "black" {}
+	}
+	SubShader {
+		Tags { "RenderType"="Opaque" }
+		LOD 200
+		
+		Pass {
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			#include "UnityCG.cginc"
+
+			sampler2D _MainTex;
+			sampler2D _BilateralGridTex;
+
+			struct appdata_custom {
+				float4 vertex : POSITION;
+				float2 texcoord : TEXCOORD0;
+			};
+			
+			struct vsout {
+				float4 vertex : POSITION;
+				float2 texcoord : TEXCOORD0;
+			};
+			
+			vsout vert(appdata_custom i) {
+				vsout o;
+				o.vertex = mul(UNITY_MATRIX_MVP, i.vertex);
+				o.texcoord = i.texcoord;
+				return o;
+			}
+			
+			fixed4 frag(vsout i) : COLOR {
+				float4 c = tex2D(_MainTex, i.texcoord);
+				return c;
+			}
+			
+			ENDCG
+		}
+	} 
+	FallBack "Diffuse"
+}
