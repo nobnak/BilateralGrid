@@ -8,7 +8,7 @@
 	}
 	SubShader {
 		Tags { "RenderType"="Transparent" "Queue"="Transparent" "IgnoreProjector"="True" }
-		Blend One One
+		Blend SrcAlpha OneMinusSrcAlpha
 		LOD 200
 		
 		Pass {
@@ -40,8 +40,9 @@
 			vsout vert(appdata_custom i) {
 				float4 c = tex2Dlod(_MainTex, i.texcoord);
 				float3 xyzOnImage = float3(i.vertex.xy, c);
-				float3 xyzOnGrid = round(xyzOnImage * _RcpSigma);
-				float2 xyzOn01 = xyzOnGrid.xy + float2(0.0, xyzOnGrid.z * _GridSize.y);
+				float3 xyzOnGrid = floor(xyzOnImage * _RcpSigma);
+				//float2 xyzOn01 = xyzOnGrid.xy + float2(0.0, round(xyzOnGrid.z) * _GridSize.y);
+				float2 xyzOn01 = xyzOnGrid.xy * _RcpGrid.xy + float2(0.0, xyzOnGrid.z);
 				
 				vsout o;
 				o.vertex = mul(UNITY_MATRIX_MVP, float4(xyzOn01, 0.0, 1.0));
