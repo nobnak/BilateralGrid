@@ -1,4 +1,4 @@
-﻿Shader "Custom/Pixel" {
+﻿Shader "Custom/Bilateral Grid" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_RcpTile ("Rcp of tile size", Vector) = (1, 1, 1, 1)
