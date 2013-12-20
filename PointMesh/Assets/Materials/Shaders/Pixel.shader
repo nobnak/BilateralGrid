@@ -46,7 +46,7 @@
 				//o.vertex = mul(UNITY_MATRIX_MVP, float4(xyzOn01.x, xyzOn01.y + xyzOn01.z, 0.0, 1.0));
 				o.vertex = float4(xyzOnClip, 0.0, 1.0);
 				o.psize = _PSize;
-				o.color = c;
+				o.color = float4(c.rgb, 1.0);
 				return o;
 			}
 			
