@@ -13,10 +13,12 @@ public class GlPointSize : MonoBehaviour {
 			Destroy(this);
 	}
 
+#if UNITY_STANDALONE_OSX
 	void OnPreRender() {
 		glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 	}
 
 	[DllImport(libGL)]
 	public static extern void glEnable(System.UInt32 flag);
+#endif
 }
