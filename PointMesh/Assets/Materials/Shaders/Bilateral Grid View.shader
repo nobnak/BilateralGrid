@@ -36,7 +36,10 @@
 			}
 			
 			fixed4 frag(vsout i) : COLOR {
-				return tex2D(_MainTex, i.texcoord);
+				float4 c = tex2D(_MainTex, i.texcoord);
+				c /= (c.a <= 0.0 ? 1.0 : c.a);
+				
+				return c * _Contrast + _Brightness;
 			}
 			
 			ENDCG
