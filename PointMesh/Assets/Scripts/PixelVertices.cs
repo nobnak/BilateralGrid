@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PixelVertices : MonoBehaviour {
 	public const string PROP_RPC_SIGMA = "_RcpSigma";
-	public const string PROP_RPC_GRID = "_RcpGrid";
+	public const string PROP_RPC_TILE = "_RcpTile";
 	public const string PROP_GRID = "_GridSize";
 
 	public GameObject target;
@@ -23,10 +23,19 @@ public class PixelVertices : MonoBehaviour {
 		var gridWidth = (int)Mathf.Ceil(imageWidth / sigma.x);
 		var gridHeight = (int)Mathf.Ceil(imageHeight / sigma.y);
 		var gridDepth = (int)Mathf.Ceil(1f / sigma.z);
+		
+		sigma = new Vector3(imageWidth / gridWidth, imageHeight / gridHeight, 1f / gridDepth);
+
+		var tileWidth = 2 + gridWidth;
+		var tileDepth = 2 + gridDepth;
+		var tileHeight = tileWidth * tileDepth;
+
+		Debug.Log(string.Format("Grid {0}x{1}x{2}", gridWidth, gridHeight, gridDepth));
+		Debug.Log(string.Format("Sigma {0}x{1}x{2}", sigma.x, sigma.y, sigma.z));
+		Debug.Log(string.Format("Tile {0}x{1}x{2}", tileWidth, tileHeight, tileDepth));
 
 		mat.SetVector(PROP_RPC_SIGMA, new Vector4(1f / sigma.x, 1f / sigma.y, 1f / sigma.z, 0f));
-		mat.SetVector(PROP_GRID, new Vector4(gridWidth, gridHeight, gridDepth, 0f));
-		mat.SetVector(PROP_RPC_GRID, new Vector4(1f / gridWidth, 1f / gridHeight, 1f / gridDepth, 0f));
+		mat.SetVector(PROP_RPC_TILE, new Vector4(1f / tileWidth, 1f / tileHeight, 1f / tileDepth, 0f));
 		
 		var vertices = new Vector3[imageWidth * imageHeight];
 		var indices = new int[imageWidth * imageHeight];
