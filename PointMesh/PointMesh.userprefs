@@ -1,12 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Materials/Shaders/Bilateral Filter.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Editor\MeshGen.cs">
     <Files>
-      <File FileName="Assets/Scripts/PixelVertices.cs" Line="1" Column="1" />
-      <File FileName="Assets/Materials/Shaders/GaussianZ.shader" Line="1" Column="1" />
-      <File FileName="Assets/Materials/Shaders/Pixel.shader" Line="1" Column="1" />
-      <File FileName="Assets/Materials/Shaders/Bilateral Filter.shader" Line="36" Column="32" />
+      <File FileName="Assets\Materials\Shaders\Bilateral Grid.shader" Line="46" Column="23" />
+      <File FileName="Assets\Scripts\PixelVertices.cs" Line="124" Column="1" />
+      <File FileName="Assets\Materials\Shaders\BilateralCommon.cginc" Line="1" Column="1" />
+      <File FileName="Assets\Materials\Shaders\Bilateral Filter.shader" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Editor\MeshGen.cs" Line="29" Column="31" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
