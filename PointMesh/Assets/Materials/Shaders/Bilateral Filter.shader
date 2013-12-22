@@ -4,6 +4,7 @@
 		_BilateralGridTex ("Bilateral grid", 2D) = "black" {}
 		_RcpTile ("Rcp of tile size", Vector) = (1, 1, 1, 1)
 		_GridSize ("Grid size", Vector) = (1, 1, 1, 1)
+		_Normalize ("Normalize", Range(0.0, 1.0)) = 1
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -21,6 +22,7 @@
 			sampler2D _BilateralGridTex;
 			float4 _GridSize;
 			float4 _RcpTile;
+			float _Normalize;
 
 			struct appdata_custom {
 				float4 vertex : POSITION;
@@ -54,9 +56,12 @@
 				float2 uv1 = float2(tile1.x, tile1.y + tile1.z);
 				float4 c0 = tex2D(_BilateralGridTex, uv0);
 				float4 c1 = tex2D(_BilateralGridTex, uv1);
-				c0 /= (c0.a <= 0.0 ? 1.0 : c0.a);
-				c1 /= (c1.a <= 0.0 ? 1.0 : c1.a);
-				return saturate(1.0 - t) * c0 + saturate(t) * c1;
+				float4 nc0 = c0 / (c0.a <= 0.0 ? 1.0 : c0.a);
+				float4 nc1 = c1 / (c1.a <= 0.0 ? 1.0 : c1.a);
+								
+				float4 c01 = (1.0 - t) * c0 + t * c1;
+				float4 nc01 = (1.0 - t) * nc0 + t * nc1;
+				return (1 - _Normalize) * c01 + _Normalize * nc01;
 			}
 			
 			ENDCG
