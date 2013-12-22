@@ -44,7 +44,8 @@
 				#endif
 				
 				float4 c = tex2D(_MainTex, i.texcoord);
-				float3 xyzOnGrid = uv2gridFloat(i.texcoord, c.r, _GridSize);
+				float l = 0.3333 * (c.r + c.g + c.b);
+				float3 xyzOnGrid = uv2gridFloat(i.texcoord, l, _GridSize);
 				float t = frac(xyzOnGrid.z);
 				xyzOnGrid.z = floor(xyzOnGrid.z);
 				float3 tile0 = xyzOnGrid * _RcpTile;

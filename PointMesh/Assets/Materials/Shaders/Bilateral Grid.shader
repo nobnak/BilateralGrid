@@ -38,7 +38,8 @@
 
 			vsout vert(appdata_custom i) {
 				float4 c = tex2Dlod(_MainTex, float4(i.texcoord, 0.0, 0.0));
-				float3 xyzOnGrid = uv2gridInt(i.texcoord, c.r, _GridSize);
+				float l = 0.3333 * (c.r + c.g + c.b);
+				float3 xyzOnGrid = uv2gridInt(i.texcoord, l, _GridSize);
 				float3 xyzOnTile = xyzOnGrid * _RcpTile;
 				float2 xyzOnClip = float2(xyzOnTile.x, xyzOnTile.y + xyzOnTile.z) * 2.0 - 1.0 + _RcpTile.xy;
 				
