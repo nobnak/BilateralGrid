@@ -1,6 +1,6 @@
 Real-Time Bilateral Filter for Unity
 ==============
-Unity 用のリアルタイム「バイラテラルフィルタ」です。[Chen 2007] の手法を実装しています.
+Unity 用のリアルタイム「バイラテラルフィルタ」です。[Chen 2007] の手法を実装しています。通常(強いフィルタ処理時)数分かかる処理が、ms単位で実行できるのが利点です。
 
 ##デモ
 [Web Demo](http://nobnak.github.io/SceneSamples/RealTimeBilateralFilter/RealTimeBilateralFilter.html)
