@@ -24,6 +24,7 @@
 			float4 _GridSize;
 			float4 _RcpTile;
 			float _Normalize;
+			int _TexType;
 
 			struct appdata_custom {
 				float4 vertex : POSITION;
@@ -43,6 +44,9 @@
 			}
 			
 			fixed4 frag(vsout i) : COLOR {
+				if (_TexType == 1)
+					_MainTex_TexelSize.xy /= _MainTex_TexelSize.zw;
+			
 				float4 c = tex2D(_MainTex, i.texcoord);
 				float l = 0.3333 * (c.r + c.g + c.b);
 				float3 xyzOnGrid = uv2gridFloat(i.texcoord - 0.5 * _MainTex_TexelSize.xy, l, _GridSize);

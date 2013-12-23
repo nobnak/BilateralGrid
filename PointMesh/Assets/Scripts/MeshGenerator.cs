@@ -7,17 +7,12 @@ public class MeshGenerator : MonoBehaviour {
 
 	private List<Mesh> _meshes;
 
-	// Use this for initialization
-	void Start () {
-		Generate();
-	}
-
 	void OnDestroy() {
 		foreach (var m in _meshes)
 			Destroy(m);
 	}
 
-	void Generate() {
+	public void Generate() {
 		_meshes = new List<Mesh>();
 		var tex = src.mainTexture;
 

@@ -1,15 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class MeshGenerator : MonoBehaviour {
 	public const int VERTEX_LIMIT = 65536;
+	public const string PROP_MAIN_TEXEL_SIZE = "_MainTex_TexelSize";
+	public const string PROP_TEXTURE_TYPE = "_TextureType";
+
 	public Material src;
 
 	private List<Mesh> _meshes;
 
 	// Use this for initialization
-	void Start () {
-		Generate();
+	IEnumerator Start () {
+		if (src.mainTexture == null) {
+			yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
+			var tex = new WebCamTexture();
+			tex.Play();
+			yield return 0;
+			src.mainTexture = tex;
+			src.SetInt(PROP_TEXTURE_TYPE, 1);
+		}
+		Generate(src.mainTexture);
+		yield return 0;
+		var texelSize = src.GetVector(PROP_MAIN_TEXEL_SIZE);
+		Debug.Log(string.Format("{0} : ({1:e},{2:e},{3},{4})", 
+		                        PROP_MAIN_TEXEL_SIZE, 
+		                        texelSize.x, texelSize.y, texelSize.z, texelSize.w));
+
 	}
 
 	void OnDestroy() {
@@ -17,9 +35,8 @@ public class MeshGenerator : MonoBehaviour {
 			Destroy(m);
 	}
 
-	void Generate() {
+	void Generate(Texture tex) {
 		_meshes = new List<Mesh>();
-		var tex = src.mainTexture;
 
 		var width = tex.width;
 		var height = tex.height;
@@ -46,6 +63,7 @@ public class MeshGenerator : MonoBehaviour {
 			m.vertices = vertices;
 			m.SetIndices(indices, MeshTopology.Points, 0);
 			m.uv = uvs;
+			m.bounds = new Bounds(Vector3.zero, 1000f * Vector3.one);
 			_meshes.Add(m);
 			var child = new GameObject();
 			var mf = child.AddComponent<MeshFilter>();
