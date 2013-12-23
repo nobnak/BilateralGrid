@@ -24,7 +24,8 @@ public class MeshGenerator : MonoBehaviour {
 		var width = tex.width;
 		var height = tex.height;
 		var nRowsInMesh = VERTEX_LIMIT / width;
-		var texelSize = new Vector3(1f / width, 1f / height, 0f);
+		var texelSize = new Vector2(1f / width, 1f / height);
+		var texelOffset = 0.5f * texelSize;
 
 		for (var i = 0; i < height; i+=nRowsInMesh) {
 			var nActualRows = Mathf.Min(nRowsInMesh, height - i);
@@ -38,7 +39,7 @@ public class MeshGenerator : MonoBehaviour {
 					var y = yOffset + i;
 					vertices[counter] = new Vector3(x, y, 0f);
 					indices[counter] = x + yOffset * width;
-					uvs[counter] = new Vector2(x * texelSize.x, y * texelSize.y);
+					uvs[counter] = new Vector2(x * texelSize.x, y * texelSize.y) + texelOffset;
 					counter++;
 				}
 			}

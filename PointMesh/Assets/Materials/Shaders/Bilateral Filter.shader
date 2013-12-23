@@ -20,6 +20,7 @@
 			sampler2D _MainTex;
 			float4 _MainTex_TexelSize;
 			sampler2D _BilateralGridTex;
+			float4 _BilateralGridTex_TexelSize;
 			float4 _GridSize;
 			float4 _RcpTile;
 			float _Normalize;
@@ -42,25 +43,20 @@
 			}
 			
 			fixed4 frag(vsout i) : COLOR {
-				#if UNITY_UV_STARTS_AT_TOP
-				#endif
-				
 				float4 c = tex2D(_MainTex, i.texcoord);
 				float l = 0.3333 * (c.r + c.g + c.b);
-				float3 xyzOnGrid = uv2gridFloat(i.texcoord, l, _GridSize);
+				float3 xyzOnGrid = uv2gridFloat(i.texcoord - 0.5 * _MainTex_TexelSize.xy, l, _GridSize);
 				float t = frac(xyzOnGrid.z);
 				xyzOnGrid.z = floor(xyzOnGrid.z);
 				float3 tile0 = xyzOnGrid * _RcpTile;
 				float3 tile1 = (xyzOnGrid + float3(0, 0, 1)) * _RcpTile;
-				float2 uv0 = float2(tile0.x, tile0.y + tile0.z);
-				float2 uv1 = float2(tile1.x, tile1.y + tile1.z);
+				float2 uv0 = float2(tile0.x, tile0.y + tile0.z) + 0.5 * _BilateralGridTex_TexelSize.xy;
+				float2 uv1 = float2(tile1.x, tile1.y + tile1.z) + 0.5 * _BilateralGridTex_TexelSize.xy;
 				float4 c0 = tex2D(_BilateralGridTex, uv0);
 				float4 c1 = tex2D(_BilateralGridTex, uv1);
-				float4 nc0 = c0 / (c0.a <= 0.0 ? 1.0 : c0.a);
-				float4 nc1 = c1 / (c1.a <= 0.0 ? 1.0 : c1.a);
 								
 				float4 c01 = (1.0 - t) * c0 + t * c1;
-				float4 nc01 = (1.0 - t) * nc0 + t * nc1;
+				float4 nc01 = c01 / (c01.a <= 0 ? 1 : c01.a);
 				return (1 - _Normalize) * c01 + _Normalize * nc01;
 			}
 			

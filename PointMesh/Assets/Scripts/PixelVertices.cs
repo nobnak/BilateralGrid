@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PixelVertices : MonoBehaviour {
 	public const string PROP_GRID_SIZE = "_GridSize";
+	public const string PROP_RCP_SIGMA = "_RcpSigma";
 	public const string PROP_RCP_TILE = "_RcpTile";
 	public const string PROP_BILATERAL_TEX = "_BilateralGridTex";
 
@@ -35,16 +36,13 @@ public class PixelVertices : MonoBehaviour {
 		var tileHeight = tileWidth * tileDepth;
 
 		sigma = new Vector3(imageWidth / gridWidth, imageHeight / gridHeight, 1f / gridDepth);
+		//var rcpSigma = new Vector4(1f / sigma.x, 1f / sigma.y, 1f / sigma.z, 0f);
 		var gridSize = new Vector4(gridWidth, gridHeight, gridDepth, 0f);
 		var rcpTile = new Vector4(1f / tileWidth, 1f / tileHeight, 1f / tileDepth, 0f);
 
 		Debug.Log(string.Format("Grid {0}x{1}x{2}", gridWidth, gridHeight, gridDepth));
 		Debug.Log(string.Format("Sigma {0}x{1}x{2}", sigma.x, sigma.y, sigma.z));
 		Debug.Log(string.Format("Tile {0}x{1}x{2}", tileWidth, tileHeight, tileDepth));
-
-		bilateralGridMat.SetVector(PROP_GRID_SIZE, gridSize);
-		bilateralGridMat.SetVector(PROP_RCP_TILE, rcpTile);
-		gaussianZ.SetVector(PROP_RCP_TILE, rcpTile);
 
 		_bgTex = new RenderTexture(tileWidth, tileHeight, 0, RenderTextureFormat.ARGBFloat);
 		_bgTex.filterMode = FilterMode.Point;
@@ -58,7 +56,12 @@ public class PixelVertices : MonoBehaviour {
 		viewer.renderer.sharedMaterial.mainTexture = _viewerTex;
 		viewer.transform.localScale = new Vector3(tileWidth, tileHeight, 1f);
 
+		bilateralGridMat.SetVector(PROP_GRID_SIZE, gridSize);
+		//bilateralGridMat.SetVector(PROP_RCP_SIGMA, rcpSigma);
+		bilateralGridMat.SetVector(PROP_RCP_TILE, rcpTile);
+		gaussianZ.SetVector(PROP_RCP_TILE, rcpTile);
 		resultMat.SetVector(PROP_GRID_SIZE, gridSize);
+		//resultMat.SetVector(PROP_RCP_SIGMA, rcpSigma);
 		resultMat.SetVector(PROP_RCP_TILE, rcpTile);
         resultMat.SetTexture(PROP_BILATERAL_TEX, _viewerTex);
 	}

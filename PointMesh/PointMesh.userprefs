@@ -1,28 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Materials\Shaders\Bilateral Filter.shader">
     <Files>
-      <File FileName="Assets\Materials\Shaders\Bilateral Grid.shader" Line="41" Column="21" />
-      <File FileName="Assets\Scripts\PixelVertices.cs" Line="102" Column="51" />
-      <File FileName="Assets\Materials\Shaders\BilateralCommon.cginc" Line="1" Column="1" />
-      <File FileName="Assets\Materials\Shaders\Bilateral Filter.shader" Line="44" Column="11" />
-      <File FileName="Assets\Scripts\Editor\MeshGen.cs" Line="29" Column="40" />
+      <File FileName="Assets\Scripts\PixelVertices.cs" Line="55" Column="47" />
+      <File FileName="Assets\Scripts\MeshGenerator.cs" Line="49" Column="61" />
+      <File FileName="Assets\Materials\Shaders\Bilateral Grid.shader" Line="45" Column="85" />
+      <File FileName="Assets\Materials\Shaders\Bilateral Filter.shader" Line="7" Column="48" />
+      <File FileName="Assets\Materials\Shaders\Bilateral Grid View.shader" Line="5" Column="36" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Materials" expanded="True">
-              <Node name="Shaders" expanded="True">
-                <Node name="Bilateral Filter.shader" selected="True" />
-              </Node>
-            </Node>
-            <Node name="Scripts" expanded="True" />
-          </Node>
-          <Node name="Assembly-CSharp-Editor" expanded="True" />
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

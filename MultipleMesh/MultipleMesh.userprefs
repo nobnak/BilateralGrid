@@ -1,18 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MeshGenerator.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\PointMesh\Assets\Materials\Shaders\Bilateral Filter.shader">
     <Files>
-      <File FileName="Assets\MeshGenerator.cs" Line="50" Column="1" />
+      <File FileName="..\PointMesh\Assets\Scripts\PixelVertices.cs" Line="55" Column="47" />
+      <File FileName="..\PointMesh\Assets\Scripts\MeshGenerator.cs" Line="49" Column="61" />
+      <File FileName="..\PointMesh\Assets\Materials\Shaders\Bilateral Grid.shader" Line="45" Column="85" />
+      <File FileName="..\PointMesh\Assets\Materials\Shaders\Bilateral Filter.shader" Line="7" Column="48" />
+      <File FileName="..\PointMesh\Assets\Materials\Shaders\Bilateral Grid View.shader" Line="5" Column="36" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="MeshGenerator.cs" selected="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
