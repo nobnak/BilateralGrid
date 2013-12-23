@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PixelVertices : MonoBehaviour {
 	public const string PROP_TEXTURE_TYPE = "_TexType";
+	public const string PROP_EFFECT = "_Effect";
 
 	public Texture2D debugSrc;
 	public GameObject viewer;
@@ -14,7 +15,10 @@ public class PixelVertices : MonoBehaviour {
 	public Material gaussianZ;
 	public Vector3 sigma = new Vector3(16f, 16f, 0.07f);
 
+	public Rect uiArea;
+
 	private BilateralGrid _bg;
+	private float _effect = 1f;
 
 	// Use this for initialization
 	IEnumerator Start () {
@@ -48,6 +52,18 @@ public class PixelVertices : MonoBehaviour {
 	void OnPostRender() {
 		if (_bg != null)
 			_bg.OnPostRender(gaussianOn);
+	}
+
+	void OnGUI() {
+		GUILayout.BeginArea(uiArea);
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Effect:", GUILayout.Width(50));
+		var tmpEffect = GUILayout.HorizontalSlider(_effect, 0f, 1f);
+		if (tmpEffect != _effect)
+			resultMat.SetFloat(PROP_EFFECT, tmpEffect);
+		_effect = tmpEffect;
+		GUILayout.EndHorizontal();
+		GUILayout.EndArea();
 	}
 
 	void OnDestroy() {

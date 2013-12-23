@@ -5,6 +5,7 @@
 		_RcpTile ("Rcp of tile size", Vector) = (1, 1, 1, 1)
 		_GridSize ("Grid size", Vector) = (1, 1, 1, 1)
 		_Normalize ("Normalize", Range(0.0, 1.0)) = 1
+		_Effect ("Effect", Range(0, 1)) = 1
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -25,6 +26,7 @@
 			float4 _RcpTile;
 			float _Normalize;
 			int _TexType;
+			float _Effect;
 
 			struct appdata_custom {
 				float4 vertex : POSITION;
@@ -61,7 +63,8 @@
 								
 				float4 c01 = (1.0 - t) * c0 + t * c1;
 				float4 nc01 = c01 / (c01.a <= 0 ? 1 : c01.a);
-				return (1 - _Normalize) * c01 + _Normalize * nc01;
+				float4 filtered = (1 - _Normalize) * c01 + _Normalize * nc01;
+				return (1.0 - _Effect) * c + _Effect * filtered;
 			}
 			
 			ENDCG
