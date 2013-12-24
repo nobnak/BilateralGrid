@@ -33,7 +33,9 @@ public class PixelVertices : MonoBehaviour {
 			var webCamTex = new WebCamTexture();
 			src = webCamTex;
 			webCamTex.Play();
-			yield return 0;
+			while (src.width <= 16)
+				yield return 0;
+			Debug.Log (string.Format("Texture size : ({0}x{1})", src.width, src.height));
 
 			bilateralGridMat.SetInt(PROP_TEXTURE_TYPE, 1);
 			resultMat.SetInt(PROP_TEXTURE_TYPE, 1);
@@ -50,6 +52,8 @@ public class PixelVertices : MonoBehaviour {
 	}
 	
 	void OnPostRender() {
+		//var texelSize = bilateralGridMat.GetVector("_MainTex_TexelSize");
+		//Debug.Log (string.Format("TexelSize : ({0:e},{1:e},{2},{3})", texelSize.x, texelSize.y, texelSize.z, texelSize.w));
 		if (_bg != null)
 			_bg.OnPostRender(gaussianOn);
 	}

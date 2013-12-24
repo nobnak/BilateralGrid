@@ -43,7 +43,7 @@
 				
 				float4 c = tex2Dlod(_MainTex, float4(i.texcoord, 0.0, 0.0));
 				float l = 0.3333 * (c.r + c.g + c.b);
-				float3 xyzOnGrid = uv2gridInt(i.texcoord - 0.5 * _MainTex_TexelSize.xy, l, _GridSize);
+				float3 xyzOnGrid = uv2gridInt(i.vertex.xy * _MainTex_TexelSize.xy, l, _GridSize);
 				float3 xyzOnTile = xyzOnGrid * _RcpTile;
 				float2 xyzOnClip = float2(xyzOnTile.x, xyzOnTile.y + xyzOnTile.z) * 2.0 - 1.0 + _RcpTile.xy;
 				
@@ -53,6 +53,8 @@
 				
 				vsout o;
 				o.vertex = float4(xyzOnClip, 0.0, 1.0);
+				//o.vertex = mul(UNITY_MATRIX_MVP, float4(i.vertex.xy * _MainTex_TexelSize.xy, 0.0, 1.0));
+				//o.vertex = mul(UNITY_MATRIX_MVP, float4(xyzOnGrid, 1.0));
 				//o.vertex = mul(UNITY_MATRIX_MVP, float4(uv2gridFloat(i.texcoord - 0.5 * _MainTex_TexelSize.xy, l, _GridSize), 1.0));
 				o.psize = _PSize;
 				o.color = float4(c.rgb, 1.0);
