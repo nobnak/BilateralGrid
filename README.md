@@ -3,7 +3,7 @@ Real-Time Bilateral Filter for Unity
 Unity 用のリアルタイム「バイラテラルフィルタ」です。[Chen 2007] の手法を実装しています。通常(強いフィルタ処理時)数分かかる処理が、ms単位で実行できるのが利点です。
 
 ##デモ
-[Web Demo (Mac だと動かないみたい)](http://nobnak.github.io/SceneSamples/RealTimeBilateralFilter/RealTimeBilateralFilter.html)
+[Web Demo](http://nobnak.github.io/SceneSamples/RealTimeBilateralFilter/RealTimeBilateralFilter.html)
 
 下の画像は、左が元のWebカメラ、右がフィルタ後の映像のキャプチャです。
 
