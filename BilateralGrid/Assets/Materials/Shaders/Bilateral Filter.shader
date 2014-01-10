@@ -6,6 +6,7 @@
 		_GridSize ("Grid size", Vector) = (1, 1, 1, 1)
 		_Normalize ("Normalize", Range(0.0, 1.0)) = 1
 		_Effect ("Effect", Range(0, 1)) = 1
+		_Gamma ("Gamma", Float) = 1
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -27,6 +28,7 @@
 			float _Normalize;
 			int _TexType;
 			float _Effect;
+			float _Gamma;
 
 			struct appdata_custom {
 				float4 vertex : POSITION;
@@ -50,7 +52,8 @@
 					_MainTex_TexelSize.xy /= _MainTex_TexelSize.zw;
 			
 				float4 c = tex2D(_MainTex, i.texcoord);
-				float l = 0.3333 * (c.r + c.g + c.b);
+				c = gamma2linear(c, _Gamma);
+				float l = rgb2luminance(c);
 				float3 xyzOnGrid = uv2gridFloat(i.texcoord - 0.5 * _MainTex_TexelSize.xy, l, _GridSize);
 				float t = frac(xyzOnGrid.z);
 				xyzOnGrid.z = floor(xyzOnGrid.z);
@@ -61,7 +64,7 @@
 				float4 c0 = tex2D(_BilateralGridTex, uv0);
 				float4 c1 = tex2D(_BilateralGridTex, uv1);
 								
-				float4 c01 = (1.0 - t) * c0 + t * c1;
+				float4 c01 = (1.0 - t) * c0.a * c0 + t * c1.a * c1;
 				float4 nc01 = c01 / (c01.a <= 0 ? 1 : c01.a);
 				float4 filtered = (1 - _Normalize) * c01 + _Normalize * nc01;
 				return (1.0 - _Effect) * c + _Effect * filtered;

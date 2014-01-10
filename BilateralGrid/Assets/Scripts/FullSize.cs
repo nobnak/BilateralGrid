@@ -17,8 +17,8 @@ public class FullSize : MonoBehaviour {
 			if (tex == null)
 				continue;
 
-			var screenAspect = (float)Screen.width / Screen.height;
-			transform.localScale = new Vector3(screenAspect, screenAspect * tex.height / tex.width, 1f);
+			var aspect = (float)tex.width / tex.height;
+			transform.localScale = new Vector3(aspect, 1f, 1f);
 		}
 	}
 }

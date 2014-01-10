@@ -48,11 +48,11 @@ public class BilateralGrid : System.IDisposable {
 		Debug.Log(string.Format("Sigma {0}x{1}x{2}", sigma.x, sigma.y, sigma.z));
 		Debug.Log(string.Format("Tile {0}x{1}x{2}", _tileWidth, _tileHeight, _tileDepth));
 
-		_bgTex = new RenderTexture(_tileWidth, _tileHeight, 0, RenderTextureFormat.ARGBFloat);
+		_bgTex = new RenderTexture(_tileWidth, _tileHeight, 0, RenderTextureFormat.ARGBFloat, RenderTextureReadWrite.Linear);
 		_bgTex.filterMode = FilterMode.Point;
 		_bgTex.useMipMap = false;
 
-		_gaussTex = new RenderTexture(_bgTex.width, _bgTex.height, _bgTex.depth, _bgTex.format);
+		_gaussTex = new RenderTexture(_bgTex.width, _bgTex.height, _bgTex.depth, _bgTex.format, RenderTextureReadWrite.Linear);
 		_gaussTex.filterMode = FilterMode.Bilinear;
 		_gaussTex.useMipMap = _bgTex.useMipMap;
 
@@ -84,8 +84,8 @@ public class BilateralGrid : System.IDisposable {
 			return;
 		}
 
-		var tmp0 = RenderTexture.GetTemporary(_bgTex.width, _bgTex.height, 0, _bgTex.format);
-		var tmp1 = RenderTexture.GetTemporary(_bgTex.width, _bgTex.height, 0, _bgTex.format);
+		var tmp0 = RenderTexture.GetTemporary(_bgTex.width, _bgTex.height, 0, _bgTex.format, RenderTextureReadWrite.Linear);
+		var tmp1 = RenderTexture.GetTemporary(_bgTex.width, _bgTex.height, 0, _bgTex.format, RenderTextureReadWrite.Linear);
 		try {
 #if true
 			Graphics.Blit(_bgTex, tmp0, _gaussianX);

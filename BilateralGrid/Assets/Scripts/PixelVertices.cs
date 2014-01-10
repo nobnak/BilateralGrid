@@ -4,11 +4,13 @@ using System.Collections;
 public class PixelVertices : MonoBehaviour {
 	public const string PROP_TEXTURE_TYPE = "_TexType";
 	public const string PROP_EFFECT = "_Effect";
+	public const string PROP_GAMMA = "_Gamma";
 
 	public Texture2D debugSrc;
 	public GameObject viewer;
 	public Material bilateralGridMat;
 	public Material resultMat;
+	public Material webcamMat;
 	public bool gaussianOn = true;
 	public Material gaussianX;
 	public Material gaussianY;
@@ -22,6 +24,7 @@ public class PixelVertices : MonoBehaviour {
 
 	// Use this for initialization
 	IEnumerator Start () {
+		var gamma = 1.0f;
 		Texture src = debugSrc;
 		if (src == null) {
 			yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
@@ -39,7 +42,13 @@ public class PixelVertices : MonoBehaviour {
 
 			bilateralGridMat.SetInt(PROP_TEXTURE_TYPE, 1);
 			resultMat.SetInt(PROP_TEXTURE_TYPE, 1);
+			gamma = UnityEditor.PlayerSettings.colorSpace == ColorSpace.Linear ? 2.2f : 1.0f;
 		}
+
+		webcamMat.mainTexture = src;
+		Debug.Log("Gamma : " + gamma);
+		bilateralGridMat.SetFloat(PROP_GAMMA , gamma);
+		resultMat.SetFloat(PROP_GAMMA, gamma);
 
 		_bg = new BilateralGrid(src, sigma, gaussianX, gaussianY, gaussianZ);
 		_bg.BindCamera(camera);
@@ -52,8 +61,6 @@ public class PixelVertices : MonoBehaviour {
 	}
 	
 	void OnPostRender() {
-		//var texelSize = bilateralGridMat.GetVector("_MainTex_TexelSize");
-		//Debug.Log (string.Format("TexelSize : ({0:e},{1:e},{2},{3})", texelSize.x, texelSize.y, texelSize.z, texelSize.w));
 		if (_bg != null)
 			_bg.OnPostRender(gaussianOn);
 	}
